@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Core_App
 {
@@ -22,7 +23,7 @@ namespace Core_App
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -33,13 +34,21 @@ namespace Core_App
 
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("first middleware ");
+                logger.LogInformation("MW1 : Incoming request");
                 await next();
+                logger.LogInformation("MW1 : Outgoing response");
+            });
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("MW2 : Incoming request");
+                await next();
+                logger.LogInformation("MW2 : Outgoing response");
             });
 
             app.Run(async context =>
             {
-                await context.Response.WriteAsync("Second middleware");
+                await context.Response.WriteAsync("request handled and response produced ! from MW3");
+                logger.LogInformation("MW3 : request handled and response produced !");
             });
         }
     }
