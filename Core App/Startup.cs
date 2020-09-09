@@ -32,6 +32,7 @@ namespace Core_App
 
             // app.UseRouting();
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.Run(async context =>
