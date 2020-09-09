@@ -35,7 +35,7 @@ namespace Core_App
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+                    await context.Response.WriteAsync(_config["Key"]);
                 });
             });
         }
