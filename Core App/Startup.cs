@@ -32,23 +32,11 @@ namespace Core_App
 
             // app.UseRouting();
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW1 : Incoming request");
-                await next();
-                logger.LogInformation("MW1 : Outgoing response");
-            });
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW2 : Incoming request");
-                await next();
-                logger.LogInformation("MW2 : Outgoing response");
-            });
+            app.UseStaticFiles();
 
             app.Run(async context =>
             {
                 await context.Response.WriteAsync("request handled and response produced ! from MW3");
-                logger.LogInformation("MW3 : request handled and response produced !");
             });
         }
     }
