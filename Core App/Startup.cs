@@ -29,14 +29,17 @@ namespace Core_App
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            // app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync(_config["Key"]);
-                });
+                await context.Response.WriteAsync("first middleware ");
+                await next();
+            });
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Second middleware");
             });
         }
     }
