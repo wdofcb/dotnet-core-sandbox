@@ -32,12 +32,11 @@ namespace Core_App
 
             // app.UseRouting();
 
-            var defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            defaultFilesOptions.DefaultFileNames.Add("About.html");
+            var fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("About.html");
 
-            app.UseDefaultFiles(defaultFilesOptions);
-            app.UseStaticFiles();
+            app.UseFileServer(fileServerOptions);
 
             app.Run(async context =>
             {
