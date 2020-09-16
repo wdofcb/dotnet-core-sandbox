@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Core_App
 {
@@ -16,8 +17,8 @@ namespace Core_App
         {
             _config = config;
         }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
         }
@@ -27,7 +28,16 @@ namespace Core_App
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                // Important to register UseDeveloperExceptionPage early in the pipeline.
+
+                // Customize UseDeveloperExceptionPage 
+
+                var options = new DeveloperExceptionPageOptions()
+                {
+                    SourceCodeLineCount = 10
+                };
+
+                app.UseDeveloperExceptionPage(options);
             }
 
             // app.UseRouting();
@@ -40,6 +50,7 @@ namespace Core_App
 
             app.Run(async context =>
             {
+                throw new Exception("exception message");
                 await context.Response.WriteAsync("request handled and response produced ! from MW3");
             });
         }
