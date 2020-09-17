@@ -1,3 +1,4 @@
+using Core_App.Models.Book;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,7 @@ namespace Core_App
         {
             // Add MVC services 
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddSingleton<IBookRepository, BookRepository>();
         }
 
         // Use this method to configure the HTTP request pipeline.
