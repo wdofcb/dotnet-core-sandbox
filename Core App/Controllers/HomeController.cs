@@ -1,10 +1,20 @@
-﻿namespace Core_App.Controllers
+﻿using Core_App.Models.Book;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Core_App.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        private IBookRepository _bookRepository { get; set; }
+
+        public HomeController(IBookRepository bookRepository)
         {
-            return "Home Controller Index";
+            _bookRepository = bookRepository;
+        }
+
+        public JsonResult Index()
+        {
+            return Json(_bookRepository.GetBook(1));
         }
     }
 }
