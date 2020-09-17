@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_App.Controllers
 {
-    public class HomeController : Controller
+    public class BooksController : Controller
     {
-        private IBookRepository _bookRepository { get; set; }
+        private readonly IBookRepository _bookRepository;
 
-        public HomeController(IBookRepository bookRepository)
+        public BooksController(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;
         }
