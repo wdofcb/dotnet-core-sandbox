@@ -22,6 +22,8 @@ namespace Core_App
         {
             // Add MVC services 
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            // Register new dependency using AddSingleton
             services.AddSingleton<IBookRepository, BookRepository>();
         }
 
