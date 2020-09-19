@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Book>
+
+@{
+    ViewBag.Title = "Books";
+}
+
+<div class="card-deck">
+    @foreach (var book in Model)
+    {
+        <div class="card m-3">
+            <div class="card-header">
+                <h3>@book.Name</h3>
+            </div>
+            <img class="card-img-top" src="~/images/dotnetcore.png" />
+            <div class="card-footer text-center">
+                <a href="#" class="btn btn-primary">View</a>
+                <a href="#" class="btn btn-secondary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    }
+</div>

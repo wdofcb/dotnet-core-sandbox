@@ -12,16 +12,14 @@ namespace Core_App.Controllers
             _bookRepository = bookRepository;
         }
 
-        public JsonResult Index()
+        public ViewResult Index()
         {
-            return Json(_bookRepository.GetBook(1));
+            return View(_bookRepository.GetAllBooks());
         }
 
         public ViewResult Details()
         {
-            var book = _bookRepository.GetBook(1);
-
-            return View(book);
+            return View(_bookRepository.GetBook(1));
         }
     }
 }

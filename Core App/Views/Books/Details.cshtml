@@ -1,14 +1,22 @@
 ﻿@model Book
 
-<div>
-    <h3>Books Details </h3>
-
-    <div>
-        Book Id : @Model.Id
-    </div>
-
-    <div>
-        Book Name : @Model.Name
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>@Model.Name</h3>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top" src="~/images/dotnetcore.png" />
+                <h4>Car ID : @Model.Id</h4>
+                <h4>Car Name: @Model.Name</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-secondary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
     </div>
 </div>
 
